@@ -1,4 +1,4 @@
-import httpStatus from "http-statuses";
+import httpStatus from "http-status";
 import Escrow from "../models/escrow.js";
 const getEscrows = async (req, res) => {
     try {
@@ -12,6 +12,7 @@ const getEscrows = async (req, res) => {
         const totalEscrows = await Escrow.find().countDocuments();
         res.status(httpStatus.OK).json({message: `${totalEscrows} escrows retrieved`, data: escrows});
     }catch (e) {
+        console.log(e.message);
         res.status(httpStatus.BAD_REQUEST).json({message: e.message});
     }
 }
